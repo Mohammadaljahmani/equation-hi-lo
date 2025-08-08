@@ -13,7 +13,8 @@ public class Game {
 
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "game") private Set<GamePlayer> gamePlayers;
+    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+    private Set<GamePlayer> gamePlayers;
     //game can have many players
 
     @OneToMany(mappedBy = "game") private Set<Round> rounds;

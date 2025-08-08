@@ -17,4 +17,7 @@ public class Player {
 
     @Column(nullable = false) private String password;
     //null table ensures that users must have passwords to the database
+
+    @Column(nullable = false)
+    private String roles;
 }
