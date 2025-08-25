@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//Spring Security’s “bridge” between your database and the security framework
+//Spring Security’s “bridge” between the database and the security framework
 
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService {

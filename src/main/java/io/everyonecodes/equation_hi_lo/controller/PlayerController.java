@@ -1,6 +1,7 @@
 package io.everyonecodes.equation_hi_lo.controller;
 
 import io.everyonecodes.equation_hi_lo.domain.Player;
+import io.everyonecodes.equation_hi_lo.dto.PlayerResponseDTO;
 import io.everyonecodes.equation_hi_lo.service.PlayerService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class PlayerController {
     }
 
     @PostMapping
-    public Player createPlayer(@RequestBody Player player) {
+    public PlayerResponseDTO createPlayer(@RequestBody Player player) {
         return playerService.createPlayer(player);
     }
 }

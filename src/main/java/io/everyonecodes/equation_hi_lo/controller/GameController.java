@@ -25,9 +25,15 @@ public class GameController {
     public Game showGameDetails(@PathVariable Long gameId) {
         return gameService.getGameDetails(gameId);
     }
+
     @PostMapping("/{gameId}/players")
     public GamePlayer joinGame(@PathVariable Long gameId, @RequestBody JoinGameRequest request) {
         return gameService.joinGame(gameId, request.getPlayerId());
+    }
+
+    @PostMapping("/{gameId}/start")
+    public Game startGame(@PathVariable Long gameId) {
+        return gameService.startGame(gameId);
     }
 
 }
