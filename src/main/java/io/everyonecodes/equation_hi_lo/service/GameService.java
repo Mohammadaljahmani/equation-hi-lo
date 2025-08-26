@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
 @Service
 @Transactional
+//Spring annotation used to define the scope of a transaction (all or nothing: If all steps succeed(save changes), if not rollback(undo changes))
+//when method is called a transaction start...
 public class GameService {
 
 
@@ -25,6 +26,7 @@ public class GameService {
     private final PlayerActionRepository playerActionRepository;
     private final RoundRepository roundRepository;
     private final EquationService equationService;
+
 
     public GameService(GameRepository gameRepository, PlayerRepository playerRepository,
                        GamePlayerRepository gamePlayerRepository, PlayerActionRepository playerActionRepository,
@@ -291,9 +293,13 @@ public class GameService {
         List<String> nums = new ArrayList<>(List.of("1","2","3","4","5","6","7","8","9","10"));
         List<String> ops = new ArrayList<>(List.of("+", "-", "×", "÷", "√"));
         Collections.shuffle(nums);
-        Collections.shuffle(ops);
+        List<String> chosenOps;
+        do {
+            Collections.shuffle(ops);
+            chosenOps = new ArrayList<>(ops.subList(0, 3));
+        } while (chosenOps.contains("√") && chosenOps.contains("×"));
         gamePlayer.setNumberCards(String.join(",", nums.subList(0, 4)));
-        gamePlayer.setOperatorCards(String.join(",", ops.subList(0, 3)));
+        gamePlayer.setOperatorCards(String.join(",", chosenOps));
         gamePlayerRepository.save(gamePlayer);
     }
 
